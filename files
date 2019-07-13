@@ -1,0 +1,86 @@
+employee.component.html
+
+<html>
+    <body>
+<h3>Angular 2 operation</h3>
+<h5>ADD EMPLOYEE</h5>
+<table>
+    <tr>ID
+        <td><input type="text" #id></td>
+    </tr>
+    <tr>NAME
+        <td><input type="text" #name></td>
+    </tr>
+    <tr>SALARY
+        <td><input type="text" #salary></td>
+    </tr>
+    <tr>DEPARTMENT
+        <td><input type="text" #department></td>
+    </tr>
+    <tr>
+        <td><button (click)="AddEmployee(id.value,name.value,salary.value,department.value)">Add Employee</button></td>
+    </tr>
+</table>
+
+<h3>SHOW ALL EMPLOYEES</h3>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SALARY</th>
+        <th>DEPARTMENT</th>
+        <th colspan="2">ACTION</th>
+    </tr>
+
+    <tr *ngFor="let emp of Employees" let i:index>
+        <td>{{emp.empId}}</td>
+        <td>{{emp.empName}}</td>
+        <td>{{emp.empSalary}}</td>
+        <td>{{emp.empDepartment}}</td>
+        <td><button (click)="update(emp)">UPDATE</button>
+            <button (click)="delete(emp,i)">DELETE</button>
+        </td>
+    </tr>
+</table>
+
+
+<h3>UPDATE EMPLOYEE</h3>
+<table>
+    <tr>ID : 
+        <td><input type="text" [value]="updateId" #refupdateid></td>
+    </tr>
+    <tr>NAME : 
+        <td><input type="text" [value]="updateName" #refupdatename></td>
+    </tr>
+    <tr>SALARY : 
+        <td><input type="text" [value]="updateSal" #refupdatesal></td>
+    </tr>
+    <tr>DEPARTMENT :
+        <td><input type="text" [value]="updateDep" #refupdatedep></td>
+    </tr>
+    <tr>
+        <td><button (click)="updateEmployee(refupdateid.value,refupdatename.value,refupdatesal.value,refupdatedep.value)">Update Employee</button></td>
+    </tr> 
+</table>
+</body>
+</html>
+
+employee.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-employee-details',
+  templateUrl: './employee-details.component.html',
+  styleUrls: ['./employee-details.component.css']
+})
+export class EmployeeDetailsComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+  onclick(id:number, name : String, Salary : number, Department : String){
+    alert(id + " " + name +" " + Salary + " " + Department);
+  }
+}
